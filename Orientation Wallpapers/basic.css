@@ -1,0 +1,38 @@
+/*
+ * Add your Stylesheet contents here
+ */
+div {
+	position: absolute;
+	height: 90%;
+	width: 90%;
+}
+
+img {
+	width: 100%;
+	height: 100%;
+}
+
+#DisplayUp {
+	display: none;
+}
+
+#DisplayDown {
+	display: none;
+}
+
+#DisplayRightUp {
+	display: none;
+}
+
+#DisplayLeftUp {
+	display: none;
+}
+
+#DisplayUpwards {
+	display: none;
+}
+
+#DisplayDownwards {
+	display: none;
+}
+

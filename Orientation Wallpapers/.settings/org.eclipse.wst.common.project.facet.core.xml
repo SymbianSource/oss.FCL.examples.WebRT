@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <runtime name="org.symbian.tools.wrttools.wrt:1.1"/>
+  <fixed facet="wst.jsdt.web"/>
+  <fixed facet="tmw.geolocation"/>
+  <fixed facet="tmw.core"/>
+  <installed facet="wst.jsdt.web" version="1.0"/>
+  <installed facet="tmw.core" version="1.0"/>
+  <installed facet="tmw.geolocation" version="1.0"/>
+</faceted-project>

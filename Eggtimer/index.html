@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Hourglass</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script language="javascript" type="text/javascript" src="basic.js"></script>
+<link rel="stylesheet" href="basic.css" type="text/css" />
+<meta name="Generator" content="Symbian WRT IDE" />
+</head>
+<body onload="javascript:init();">
+<div id="main-window">
+	<div id="remaining-time">
+	<div id="time" ><a href="javascript:showTimerSetup()" id="timervalue">00:00:00</a></div>
+	<div id="pausestart" onclick="pauseStart()">&nbsp;</div>
+	</div>
+	<div id="hourglass">
+		<div id="sand">&nbsp;</div>
+		<div id="sand-bottom">&nbsp;</div>
+		<img src="images/hourglass.png"></img>
+	</div>
+</div>
+<div id="time-setup">
+	Specify time: 
+	<input id="hrs" class="digits" value="00"/>:<input id="min" class="digits" value="00"/>:<input id="sec" class="digits" value="00"/>
+	<input type="button" value="Start" onclick="startTimer()"/><input type="button" value="Cancel" onclick="showMainWindow()"/>
+</div>
+</body>
+</html>

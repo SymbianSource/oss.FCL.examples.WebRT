@@ -1,0 +1,61 @@
+/*
+ * Add your Stylesheet contents here
+ */
+#remaining-time {
+	background-color: olive;
+	width: 170px;
+	height: 40px;
+	position: absolute;
+	left: 95px;
+	font-size: xx-large;
+}
+
+#pausestart {
+	height: 32px;
+	width: 32px;
+	position: relative;
+	right: -138px;
+	top: -32px;
+	background-image: url('images/button.png');
+}
+
+.digits {
+	width: 3ex;
+	text-align: center;
+}
+
+#time {
+	font-weight: bold;
+	text-align: center;
+	width: 138px;
+}
+
+#sand {
+	background-color: yellow;
+	position: absolute;
+	top: 0;
+	bottom: 50%;
+	width: 100%;
+	z-index: -1;
+}
+
+#sand-bottom {
+	background-color: yellow;
+	position: absolute;
+	top: 100%;
+	bottom: 0;
+	width: 100%;
+	z-index: -2;
+}
+
+:LINK {
+	text-decoration: none;
+	color: black;
+}
+
+#hourglass {
+	position: absolute;
+	top: 80px;
+	left: 70px;
+	z-index: 100;
+}
