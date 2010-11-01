@@ -2,7 +2,6 @@
  * Add your Stylesheet contents here
  */
 #remaining-time {
-	background-color: olive;
 	width: 170px;
 	height: 40px;
 	position: absolute;
@@ -17,6 +16,7 @@
 	right: -138px;
 	top: -32px;
 	background-image: url('images/button.png');
+	background-position: 0px 32px
 }
 
 .digits {
@@ -31,7 +31,7 @@
 }
 
 #sand {
-	background-color: yellow;
+	background-color: rgb(255, 208, 52);
 	position: absolute;
 	top: 0;
 	bottom: 50%;
@@ -40,7 +40,7 @@
 }
 
 #sand-bottom {
-	background-color: yellow;
+	background-color: rgb(255, 208, 52);
 	position: absolute;
 	top: 100%;
 	bottom: 0;

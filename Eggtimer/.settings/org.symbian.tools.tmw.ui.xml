@@ -1,3 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<deployment targetId="mtw.filesystem" typeId="org.symbian.tools.tmw.fileSystem">&#x0A;<target targetId="Testing5800" typeId="org.symbian.tools.tmw.bluetooth"/>&#x0A;<target path="/Users/eugeneo/Desktop/Eggtimer.wgz" targetId="mtw.filesystem" typeId="org.symbian.tools.tmw.fileSystem"/>
-</deployment>
+<deployment targetId="mtw.filesystem" typeId="org.symbian.tools.tmw.fileSystem">&#x0A;<target targetId="Testing5800" typeId="org.symbian.tools.tmw.bluetooth"/>&#x0A;<target path="/Users/eugeneo/Desktop/Eggtimer.wgz" targetId="mtw.filesystem" typeId="org.symbian.tools.tmw.fileSystem"/>&#x0A;</deployment>

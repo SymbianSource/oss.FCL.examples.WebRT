@@ -4,14 +4,70 @@
 
 var SETUP_ID = 1;
 
-var timervalue = 0;
-var initialTimer = 0;
+var timervalue = 60;
+var initialTimer = 60;
 var timeoutId = null;
+var paused = true;
+var displayUp = true;
 
 function init()
 {
 	showMainWindow();
 	widget.setDisplayPortrait();
+	watchSensorNotifications();
+}
+
+// Call this function to add a callback that will be notified of orientation
+// changes
+function watchSensorNotifications() {
+	var sensors = device.getServiceObject("Service.Sensor", "ISensor");
+	var SensorParams = {
+		SearchCriterion : "Orientation"
+	};
+	var result = sensors.ISensor.FindSensorChannel(SensorParams);
+
+	if (result.ErrorCode != 0) {
+		var errorCode = result.ErrorCode;
+		var errorMessage = result.ErrorMessage;
+		return null;
+	}
+	var result2 = sensors.ISensor.RegisterForNotification(
+			{ ChannelInfoMap : result.ReturnValue[0], 
+				ListeningType : "ChannelData" }, sensorCallback);
+	if (result.ErrorCode == 0) {
+		var transactionId = result.TransactionID;
+		return transactionId;
+	} else {
+		var errorCode = result.ErrorCode;
+		var errorMessage = result.ErrorMessage;
+		return null;
+	}
+}
+
+function turn(up) {
+	if (up != displayUp) {
+		displayUp = up;
+		timervalue = initialTimer - timervalue;
+		showValues();
+	}
+}
+
+// This function can be passed as callback to
+// sensors.ISensor.RegisterForNotification method
+function sensorCallback(transactionId, code, result) {
+	if (result.ErrorCode == 0) {
+		var dataType = result.ReturnValue.DataType;
+		var orientation = result.ReturnValue.DeviceOrientation;
+
+		if (orientation == "DisplayUp") {
+			turn(true);
+		} else if (orientation == "DisplayDown") {
+			turn(false);
+		}
+	} else {
+		var errorCode = result.ErrorCode;
+		var errorMessage = result.ErrorMessage;
+	}
 }
 
 function startTimer() {
@@ -33,17 +89,40 @@ function startCountdown() {
 	tick();
 }
 
+function showValues() {
+	var hrs = Math.floor(timervalue / 3600);
+	var mins = Math.floor((timervalue % 3600) / 60);
+	var sec = timervalue % 60;
+	
+	var sz = pad(hrs) + ":" + pad(mins) + ":" + pad(sec);
+	document.getElementById("timervalue").innerHTML = sz;
+	var sand=document.getElementById("sand");
+	var sandBottom = document.getElementById("sand-bottom");
+	var top, bottom;
+	top = (50 * (initialTimer-timervalue)/initialTimer).toFixed(0) + "%";
+	bottom = "50%";
+	if (displayUp) {
+		sand.style.top = top;
+		sand.style.bottom = bottom;
+	} else {
+		sandBottom.style.bottom = top;
+		sandBottom.style.top = bottom;
+	}
+	bottom = "0%";
+	top = (50 + (50 * timervalue/initialTimer)).toFixed(0) + "%";
+	if (displayUp) {
+		sandBottom.style.top = top;
+		sandBottom.style.bottom = bottom;
+	} else {
+		sand.style.top = bottom;
+		sand.style.bottom = top;
+	}
+}
+
 function tick() {
 	if (timervalue > 0) {
 		timervalue = timervalue - 1;
-		var hrs = Math.floor(timervalue / 3600);
-		var mins = Math.floor((timervalue % 3600) / 60);
-		var sec = timervalue % 60;
-		
-		var sz = pad(hrs) + ":" + pad(mins) + ":" + pad(sec);
-		document.getElementById("timervalue").innerHTML = sz;
-		document.getElementById("sand").style.top=(50 * (initialTimer-timervalue)/initialTimer).toFixed(0) + "%";
-		document.getElementById("sand-bottom").style.top=(50+(50 * timervalue/initialTimer)).toFixed(0) + "%";
+		showValues();
 		if (timervalue == 0) {
 			cancelTimer();
 		}
@@ -84,7 +163,6 @@ function showTimerSetup() {
 	menu.setRightSoftkeyLabel("Cancel", showMainWindow);
 }
 
-var paused = false;
 
 function pauseStart() {
 	if (paused) {
