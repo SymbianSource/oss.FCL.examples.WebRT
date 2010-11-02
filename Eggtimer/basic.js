@@ -4,8 +4,8 @@
 
 var SETUP_ID = 1;
 
-var timervalue = 60;
-var initialTimer = 60;
+var timervalue = 30;
+var initialTimer = 30;
 var timeoutId = null;
 var paused = true;
 var displayUp = true;
@@ -15,6 +15,7 @@ function init()
 	showMainWindow();
 	widget.setDisplayPortrait();
 	watchSensorNotifications();
+	startTimer();
 }
 
 // Call this function to add a callback that will be notified of orientation
@@ -123,9 +124,6 @@ function tick() {
 	if (timervalue > 0) {
 		timervalue = timervalue - 1;
 		showValues();
-		if (timervalue == 0) {
-			cancelTimer();
-		}
 	}
 }
 
@@ -161,20 +159,4 @@ function showTimerSetup() {
 	var item = menu.getMenuItemById(SETUP_ID);
 	menu.remove(item);
 	menu.setRightSoftkeyLabel("Cancel", showMainWindow);
-}
-
-
-function pauseStart() {
-	if (paused) {
-		startCountdown();
-		document.getElementById("pausestart").style.backgroundPosition = "0px 0px";
-		paused = false;
-	} else {
-		if (timeoutId) {
-			window.clearInterval(timeoutId);
-			timeoutId = null;
-		}
-		document.getElementById("pausestart").style.backgroundPosition = "0px 32px";
-		paused = true;
-	}
 }

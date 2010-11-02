@@ -9,16 +9,6 @@
 	font-size: xx-large;
 }
 
-#pausestart {
-	height: 32px;
-	width: 32px;
-	position: relative;
-	right: -138px;
-	top: -32px;
-	background-image: url('images/button.png');
-	background-position: 0px 32px
-}
-
 .digits {
 	width: 3ex;
 	text-align: center;
