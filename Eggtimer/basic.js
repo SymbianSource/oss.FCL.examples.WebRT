@@ -95,7 +95,8 @@ function showValues() {
 	var mins = Math.floor((timervalue % 3600) / 60);
 	var sec = timervalue % 60;
 	
-	var sz = pad(hrs) + ":" + pad(mins) + ":" + pad(sec);
+	var sz = (hrs > 0 ? (pad(hrs) + ":") : "") + 
+			(mins > 0 ? (pad(mins) + ":") : "") + pad(sec);
 	document.getElementById("timervalue").innerHTML = sz;
 	var sand=document.getElementById("sand");
 	var sandBottom = document.getElementById("sand-bottom");
